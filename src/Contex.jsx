@@ -40,6 +40,7 @@ const Provider = (props) => {
   };
 
   const weatherHandler = (e) => {
+
     setLoading(true);
         setTown(city)
     if (city === "") {
