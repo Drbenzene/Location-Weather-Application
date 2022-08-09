@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../../Contex";
 import styles from "./WeatherInfo.module.css";
 // import {GoLocation} from 'react-icons/go'
-import {MdDateRange} from 'react-icons/md'
+// import {MdDateRange} from 'react-icons/md'
 import {WiDayCloudyGusts, WiDayCloudyHigh} from 'react-icons/wi'
 
 function Weatherinfo() {
@@ -28,7 +28,7 @@ function Weatherinfo() {
                   <div className="weather-gradient" />
                   <div className="date-container">
                     <h2 className="date-dayname">{new Date(weatherCondition.current.dt * 1000).toLocaleString("en-US", {weekday: "long"}) }</h2>
-                    <MdDateRange />
+                    {/* <MdDateRange /> */}
                     <span className="date-day">{`${new Date(weatherCondition.current.dt * 1000).toLocaleString("en-US", {month: "long"})} ${local.toLocaleString("en-US", {day: "numeric"})} ${local.toLocaleString("en-US", {year: "numeric"})}`}</span>
                     <i className="location-icon" data-feather="map-pin" />
                     {/* <GoLocation /> */}
