@@ -34,7 +34,6 @@ function Weatherinfo() {
                     <GoLocation />
                     <span className="location">{town} - {weatherCondition.timezone}</span>
 
-                    {/* <span className="date-day">{`${new Date(weatherCondition.current.dt * 1000).toLocaleString("en-US", {hour: "numeric"})} ${local.toLocaleString("en-US", {minutes: "numeric"})} : ${local.toLocaleString("en-US", {second: "numeric"})}`}</span> */}
 
                   </div>
                   <div className="weather-container">
