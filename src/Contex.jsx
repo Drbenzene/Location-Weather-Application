@@ -1,17 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import cities from "cities.json";
 
 const GlobalContext = React.createContext();
 
 const Provider = (props) => {
-  const [loading, setLoading] = useState(false);
   const [city, setCity] = useState("");
-  const [weatherCondition, setWeatherCondition] = useState([]);
+  const [weatherCondition, setWeatherCondition] = useState(localStorage.weatherCondition ? JSON.parse(localStorage.weatherCondition) : []);
   const [town, setTown] = useState("");
 
+  useEffect(() => {
+    localStorage.setItem("weatherCondition", JSON.stringify(weatherCondition));
+  }, [weatherCondition]);
+
   const weatherFetch = (lat, lon) => {
-    setLoading(true);
     const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=6890862a72fc7aabfe2222f2f2b1d4b0`;
     axios
       .get(api)
@@ -30,7 +32,7 @@ const Provider = (props) => {
 
     console.log(weather.timezone);
     setWeatherCondition(weather);
-    console.log(weatherCondition, "The Wearther condition ");
+    localStorage.setItem('weatherCondition', JSON.stringify(weather));
   };
 
   const changeHandler = (e) => {
@@ -41,7 +43,6 @@ const Provider = (props) => {
 
   const weatherHandler = (e) => {
 
-    setLoading(true);
         setTown(city)
     if (city === "") {
       setWeatherCondition([])
@@ -51,6 +52,7 @@ const Provider = (props) => {
     if (theCity === undefined) {
       return alert("City not found, Please Try a new Search.");
     }
+
     const lon = theCity.lng;
     const lat = theCity.lat;
     weatherFetch(lat, lon);
